@@ -22,7 +22,7 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
-  getCars() {
+  getCars(): Observable<Car[]> {
     return this.http.get<CarsResponse>(this.apiUrl + '/cars')
       .pipe(
         concatMap(res => res.cars),

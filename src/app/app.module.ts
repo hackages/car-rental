@@ -7,12 +7,14 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './pages/home/home.component';
 import { BasketComponent } from './pages/basket/basket.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    BasketComponent
+    BasketComponent,
+    ProfileComponent
   ],
   imports: [
     CoreModule,
