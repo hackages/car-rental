@@ -1,0 +1,29 @@
+<mat-card>
+  
+  <mat-card-title>{{ car.car_model }}</mat-card-title>
+  <mat-card-subtitle>{{ car.car }}</mat-card-subtitle>
+
+  <mat-card-actions fxLayoutAlign="space-between center">
+    <span>{{ car.price }}</span>
+
+    <button
+      mat-flat-button
+      [color]="!isCarInBasket(car.id) ? 'primary' : 'warn'"
+      (click)="updateCarToBasket(car.id)">
+
+      <mat-icon aria-hidden="false" aria-label="Add to basket">
+
+        <ng_container *ngIf="!isCarInBasket(car.id); else elseCarNotInBasket">
+          add_shopping_cart
+        </ng_container>
+        
+        <ng-template #elseCarNotInBasket>
+          remove_shopping_cart
+        </ng-template>
+
+      </mat-icon>
+    </button>
+
+  </mat-card-actions>
+
+</mat-card>

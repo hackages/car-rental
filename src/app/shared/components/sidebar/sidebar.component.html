@@ -1,0 +1,28 @@
+<div class="container">
+
+  <mat-card fxFlex>
+
+    <mat-card-title>Filter</mat-card-title>
+
+    <form fxLayoutAlign="space-between center">
+      
+      <mat-form-field fxFlex="80">
+
+        <mat-label>Enter your research</mat-label>
+        <input 
+          matInput 
+          type="search" 
+          placeholder="Placeholder" 
+          [(ngModel)]= "searchFilter"
+          name="searchFilter"
+          (ngModelChange)="onSearch($event)">
+  
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">Search</button>
+
+    </form>
+
+  </mat-card>
+
+</div>
