@@ -13,12 +13,20 @@ body {
 }
 
 .main {
-  padding: 0px 10px;
-  max-width: 1250px;
   margin: 0 auto;
+
+  @media screen and (min-width: 960px) {
+    max-width: 720px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 960px;
+  }
+
 }
 
 .container {
+  padding: 0 20px;
   margin: 20px 0;
 }
 

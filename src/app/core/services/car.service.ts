@@ -26,7 +26,7 @@ export class CarService {
     return this.http.get<CarsResponse>(this.apiUrl + '/cars')
       .pipe(
         concatMap(res => res.cars),
-        take(50),
+        // take(50),
         toArray()
         // tap(res => console.log(res))
       );
