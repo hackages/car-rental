@@ -1,7 +1,8 @@
-<div *ngIf="(cars$ | async) as cars" class="main">
+  <div class="main">
 
-  <app-sidebar (searched)="onSearch($event)"></app-sidebar>
-
+  <app-sidebar [searched]="searchTerm$"></app-sidebar>
+  
+  <div *ngIf="(cars$ | async) as cars" class="main">
   <div 
     class="container" 
     fxLayout="column" 
@@ -11,9 +12,7 @@
       <div
         fxFlex="0 0 calc(100% / 3)"
         fxFlex.xs="100%"
-        *ngFor="let car of cars            
-          | paginate: { itemsPerPage: pageSize, currentPage: pageCurrent, totalItems: cars.length }
-          | searchTerm: searchFilter">
+        *ngFor="let car of cars">
 
         <app-car [car]="car"></app-car>
   
@@ -22,7 +21,6 @@
   </div>
   
   <mat-paginator
-    *ngIf="!searchFilter"
     class="container"
     hidePageSize
     [length]="cars.length"
