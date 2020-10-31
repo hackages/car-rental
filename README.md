@@ -1,8 +1,6 @@
 # CarRental
 
-Live demo at  [https://my-rental-car.netlify.app/](https://my-rental-car.netlify.app/)
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+CHECK the live demo at <a href="https://my-rental-car.netlify.app/" target="_blank">https://my-rental-car.netlify.app/</a>
 
 ## Development server
 
