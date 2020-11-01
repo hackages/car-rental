@@ -11,12 +11,12 @@ import { BasketService } from '@core/services/basket.service';
 
 export class HeaderComponent implements OnInit {
 
-  carInBasket: Observable<number>;
+  carInBasket$: Observable<number>;
 
   constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
-    this.carInBasket = this.basketService.sumItem();
+    this.carInBasket$ = this.basketService.totalItem();
   }
 
 }

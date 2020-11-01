@@ -1,6 +1,4 @@
-<mat-toolbar 
-  fxLayoutAlign="space-around center" 
-  color="primary">
+<mat-toolbar fxLayoutAlign="space-around center" color="primary">
 
   <button fxShow="true" fxHide.gt-xs="true" mat-icon-button aria-label="menu">
     <mat-icon>menu</mat-icon>
@@ -18,14 +16,12 @@
   <button mat-icon-button>
 
     <a mat-icon-button fxLayoutAlign="space-around center" routerLink="/basket">
-      <mat-icon 
-      [matBadge]="carInBasket | async" 
-      matBadgeSize="small" 
-      matBadgeColor="warn">
-      shopping_cart
-    </mat-icon>
+      <mat-icon [matBadge]="carInBasket$ | async" matBadgeSize="small" matBadgeColor="warn">
+        shopping_cart
+      </mat-icon>
     </a>
 
   </button>
-  
+
+
 </mat-toolbar>

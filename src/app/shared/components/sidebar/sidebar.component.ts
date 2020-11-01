@@ -5,6 +5,7 @@ import { Component, EventEmitter, OnInit, Input } from "@angular/core";
   templateUrl: "sidebar.component.html",
   styles: [],
 })
+
 export class SidebarComponent implements OnInit {
   searchFilter: string = "";
   @Input() searched: EventEmitter<string> = new EventEmitter<string>();

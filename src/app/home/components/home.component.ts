@@ -10,6 +10,7 @@ import { Car } from "@shared/models/car";
   templateUrl: "./home.component.html",
   styles: [],
 })
+
 export class HomeComponent implements OnInit {
   cars$: Observable<Car[]>;
   searchTerm$: Subject<string> = new Subject();

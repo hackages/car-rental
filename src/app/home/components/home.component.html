@@ -1,0 +1,34 @@
+<div class="main">
+
+  <app-sidebar [searched]="searchTerm$"></app-sidebar>
+  
+  <div *ngIf="(cars$ | async) as cars" class="main">
+
+    <div 
+      class="container" 
+      fxLayout="column" 
+      fxLayout.gt-xs="row wrap" 
+      fxLayoutGap="20px grid">
+    
+        <div
+          fxFlex="0 0 calc(100% / 3)"
+          fxFlex.xs="100%"
+          *ngFor="let car of cars | paginate: { itemsPerPage: pageSize, currentPage: pageCurrent, totalItems: cars.length }">
+
+          <app-car [car]="car"></app-car>
+    
+        </div>
+    
+    </div>
+
+    <mat-paginator
+    class="container"
+    hidePageSize
+    [length]="cars.length"
+    [pageSize]="pageSize"
+    (page)="onPageChange($event)"></mat-paginator>
+
+  </div>
+
+</div>
+

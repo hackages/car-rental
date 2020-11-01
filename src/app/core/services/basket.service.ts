@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { concatMap, map, switchMap, tap, toArray } from 'rxjs/operators';
 
 import { CarService } from './car.service';
 import { Car } from '@shared/models/car';
-import { concatMap, toArray } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,40 +12,45 @@ import { concatMap, toArray } from 'rxjs/operators';
 
 export class BasketService {
 
-  items: number[] = [];
-  total$: BehaviorSubject<number> = new BehaviorSubject(0);
+  items$: BehaviorSubject<number[]> = new BehaviorSubject([]);
 
   constructor(private carService: CarService) { }
 
   getItemsByIds(): Observable<Car[]> {
-    if (this.items.length == 0) return of(null);
+    if (this.items$.value.length == 0) return of(null);
 
-    return from(this.items)
+    return this.items$
       .pipe(
+        switchMap((item: number[]) => [...item]),
         concatMap((carId: number) => this.carService.getCarById(carId)),
         toArray()
       );
   }
 
   addItem(carId: number): void {
-    this.items.push(carId);
-    this.total$.next(this.items.length);
+    const newItems: number[] = this.items$.getValue();
+    newItems.push(carId);
+    this.items$.next(newItems);
+    console.log(newItems);
   }
 
   removeItem(carId: number): void {
-    const index: number = this.items.indexOf(carId);
+    const newItems: number[] = this.items$.getValue();
+    const index: number = newItems.indexOf(carId);
     if (index !== -1) {
-      this.items.splice(index, 1);
-      this.total$.next(this.items.length);
+      newItems.splice(index, 1);
+      this.items$.next(newItems);
     }
   }
 
   containsItem(carId: number): boolean {
-    return this.items.includes(carId);
+    return this.items$.value.includes(carId);
   }
 
-  sumItem(): Observable<number> {
-    return this.total$.asObservable();
+  totalItem(): Observable<number> {
+    return this.items$.pipe(
+      map(item => item.length)
+    );
   }
 
 }
